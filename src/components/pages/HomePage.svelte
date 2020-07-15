@@ -54,4 +54,6 @@ function next() {
 
 </style>
 
+{#if localStorage.DEV}
 <Todo />
+{/if}
