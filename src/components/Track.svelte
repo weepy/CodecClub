@@ -2,13 +2,13 @@
 	export let score = null
 	export let filename = null
 	export let title = null
-	filename="https://b33p.live/2ra4a6dz26v/bcpfw.ogg"
+
 	import AudioPlayer from './AudioPlayer.svelte'
 </script>
 
 <div>
 
-<AudioPlayer src="{filename}" ></AudioPlayer>
+<AudioPlayer src="audio/{filename}" ></AudioPlayer>
 <span>	 {title}	</span>
 <select bind:value={score}>
    	<option value={null}>Rating</option>

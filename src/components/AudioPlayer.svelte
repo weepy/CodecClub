@@ -45,7 +45,7 @@
 	bind:this={audio}
 	on:pause={() => playing = false}
 
-	
+	preload
 	{src}
 >
 </audio>

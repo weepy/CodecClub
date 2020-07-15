@@ -1,10 +1,1 @@
-export default {
-	files:["puma","puma2"],
-	ext:[
-		"wav",
-		"256.opus",
-		"320.opus",
-		"256.aac",
-		"320.aac"
-	]
-}
+export default {"files":["Track 1 - Full Track","Track 1 - Instrumental","Track 1 - Vocals","Track 2 - Bass","Track 2 - Drums","Track 2 - Full Track","Track 2 - Instrumental","Track 2 - Vocals"],"ext":["wav","96.aac","128.aac","256.aac","384.aac"]}
