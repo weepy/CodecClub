@@ -9,11 +9,12 @@ localStorage.userId=localStorage.userId||Math.random().toString(36).slice(2)
 localStorage.sessionTime=Date.now()
 
 $: speakerValue = null
-
+$: userTypeValue = null
 
 function next() {
 	page('#test')
 	localStorage.speaker = speakerValue
+	localStorage.userType = userTypeValue
 }
 
 </script>
@@ -43,15 +44,29 @@ function next() {
 	<option>Ear buds</option>
 </select>
 
+<p>
+And what is your relationship to music / audio?</p>
 
-{#if speakerValue != "Pick" && speakerValue != null}
+
+<select bind:value={userTypeValue}>
+	<option>Pick</option>
+	<option>Professional Studio Engineer</option>
+	<option>Professional Artist</option>
+	<option>Hobbyist Artist/Producer</option>
+	<option>Audiophile</option>
+	<option>Music Lover</option>
+	<option>Something else</option>
+</select>
+
+{#if speakerValue != "Pick" && speakerValue != null && userTypeValue != "Pick" && userTypeValue != null }
 	<br/><br/><br/>
-	<button on:click={next}>I'm ready for the test</button>
+	<button on:click={next}>I'm ready for the test! →</button>
 {/if}
 
 <style >
-
-
+button {
+    padding:20px; background: white; border: 1px solid black;
+}
 </style>
 
 {#if localStorage.DEV}

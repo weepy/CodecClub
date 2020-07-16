@@ -20,7 +20,7 @@ const database = firebase.database();
 let scoresRef  
 
 
-const bucket = document.location.hostname == "localhost" ? "scores" : "res"
+const bucket = document.location.hostname == "localhost" ? "scores-dev" : "scores-prod"
 
 scoresRef = firebase.database().ref(bucket)
 

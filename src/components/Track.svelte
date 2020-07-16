@@ -2,7 +2,8 @@
 	export let score = null
 	export let filename = null
 	export let title = null
-
+	export let norate = false
+	export let extension
 	import AudioPlayer from './AudioPlayer.svelte'
 </script>
 
@@ -10,18 +11,28 @@
 
 <AudioPlayer src="audio/{filename}" ></AudioPlayer>
 <span>	 {title}	</span>
-<select bind:value={score}>
-   	<option value={null}>Rating</option>
-	  <option value={1}>1 - Best</option>
-		<option value={2}>2</option>
-		<option value={3}>3</option>
-		<option value={4}>4</option>
-		<option value={5}>5 - Worst</option>
-</select>	
+
+{#if norate == false}
+	<select bind:value={score}>
+		<option value={null}>Rating</option>
+		<option value={1}>1 - Best</option>
+			<option value={2}>2</option>
+			<option value={3}>3</option>
+			<option value={4}>4</option>
+			<option value={5}>5 - Worst</option>
+	</select>	
+
+	
+	<!-- <span>{extension}</span> -->
+	
+{/if}
 </div>
 
 
 <style>
+div {
+	height: 50px;
+}
 	audio {
 		height: 30px;
     padding: 0;

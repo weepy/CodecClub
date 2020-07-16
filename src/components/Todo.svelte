@@ -1,10 +1,14 @@
 <pre>
 
 
-* input for name / what are you listing to at the start
+* shouldnt be able to jump in at test and get no user id also need new session id
+
+>> * show results at the end of each section ??
 
 
-* send to firebase
+* add a lower quality bitrate
+
+* add a userType
 
 
 </pre>

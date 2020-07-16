@@ -22,7 +22,7 @@ function processSnapshot(snapshot) {
     const ext = Object.keys(rows[0].results).sort()
 
     header = [
-        "userId", "sessionTime", "file", ...ext, "speakers"
+        "userId", "sessionTime", "file", ...ext, "speakers", "userType"
     ]
 
     return rows.map(row => {
@@ -32,7 +32,8 @@ function processSnapshot(snapshot) {
             row.sessionTime,
             row.file,
             ...(Object.keys(res).sort().map(x => res[x])),
-            row.speakers
+            row.speakers,
+            row.userType
         ]
     })
 

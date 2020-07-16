@@ -9,13 +9,14 @@
 
 	
 
-	let ext = shuffle([...config.ext])
+	let ext = shuffle([...config.ext.filter(x => x != "wav")])
 	let error
+	let completed = false
 	
 	
 	let scores = ext.map(() => null)
 
-	function click() {
+	function done() {
 		console.log(scores)
 		error = scores.findIndex(s => s == null) >= 0
 		console.log(error)
@@ -35,33 +36,48 @@
 				file, 
 				userId: localStorage.userId, 
 				sessionTime: parseInt(localStorage.sessionTime), 
-				speakers: localStorage.speaker 
+				speakers: localStorage.speaker,
+				userType: localStorage.userType
+
 			}
 
 
 			 appendFirebase(data)
 			
-			ext = shuffle([...config.ext])
-			scores = ext.map(() => null)
+
 			
 
-			ondone()			
+			// completed = true
+			next()
 		}
 
 	}
+
+	function next() {
+		ext = shuffle([...config.ext.filter(x => x != "wav")])
+		scores = ext.map(() => null)
+		ondone()
+	}
+	
 	
 </script>
 
 <div>
 
-
+<Track title="Uncompressed original .wav" filename="{file}.wav" norate={true} />
 {#each ext as ex, i}
-<Track title="compressed with codec {'ABCDEFG'[i]}" filename="{file}.{ex}" bind:score={scores[i]} />
+<Track title="Compressed with codec {'ABCDEFG'[i]}" filename="{file}.{ex}" bind:score={scores[i]} extension={completed ? ex : ""} />
 {/each}	
-
-	<button on:click={click}>
+	<!-- {#if completed == false} -->
+	<button on:click={done}>
+		Next →
+	</button>
+	<!-- {:else}
+	<button on:click={next}>
 		Next >>
 	</button>
+	{/if} -->
+
 	{#if error}
 		<p class="error">
 			You missed one!
@@ -71,7 +87,10 @@
 
 <style>
 	button {
-		
+		    background: white;
+    border: 1px solid black;
+    padding: 14px;
+
 		margin-top: 20px
 	}
 	.error {

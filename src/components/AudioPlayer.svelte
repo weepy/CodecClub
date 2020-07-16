@@ -18,17 +18,21 @@
 	}
 	
 	function play() {
+		let jumpto = 0
 		if (current && current !== audio) {
-			current.pause();
+			current.pause()
+			
+			jumpto = current.currentTime == current.duration ? 0 : current.currentTime
 			current.currentTime = 0;
 		}
-		if(current == audio ) {
+		if(current == audio && current.currentTime < current.duration) {
 			current.pause()
 			playing = false
 			current = null
 		}
 		else {
 			current = audio;
+			current.currentTime = jumpto+0.1
 			current.play()
 			playing = true			
 		}

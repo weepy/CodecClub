@@ -25,12 +25,12 @@ function compress(name, ext, bitrate) {
 
 const config = {
     files: [],
-    ext: ['wav', '96.aac','128.aac','256.aac','384.aac']
+    ext: ['wav', '96.aac','128.aac','256.aac','64.aac']
     // ext: ['wav', '16.aac','32.aac','64.aac','128.aac']
 }
 
 
-execSync(`rmdir ${__dirname}/../public/audio/`)
+execSync(`rm -rf ${__dirname}/../public/audio/`)
 execSync(`mkdir ${__dirname}/../public/audio/`)
 
 fs.readdirSync('./audio-source').forEach(x => {
