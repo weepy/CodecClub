@@ -4,7 +4,8 @@ const { execSync } = require('child_process');
 const CODECS = {
     ogg: "libvorbis",
     opus: "libopus",
-    aac: "aac"
+    aac: "aac",
+    flac: "flac"
 }
 
 function compress(name, ext, bitrate) {
@@ -14,7 +15,8 @@ function compress(name, ext, bitrate) {
     const outputFile = `${__dirname}/../public/audio/${name}.${bitrate}.${ext}`
 
     const codec = CODECS[ext]
-    const cmd = `ffmpeg -y -i "${inputFile}" -c:a ${codec} -b:a ${bitrate}K "${outputFile}"`
+    const b = ext == "flac" ? "" : `-b:a ${bitrate}K`
+    const cmd = `ffmpeg -y -i "${inputFile}" -c:a ${codec} ${b} "${outputFile}"`
 
     console.log(cmd)
     execSync(cmd)
@@ -25,7 +27,7 @@ function compress(name, ext, bitrate) {
 
 const config = {
     files: [],
-    ext: ['wav', '96.aac','128.aac','256.aac','64.aac']
+    ext: ['wav.flac', '96.aac','128.aac','256.aac','64.aac']
     // ext: ['wav', '16.aac','32.aac','64.aac','128.aac']
 }
 
@@ -36,22 +38,22 @@ execSync(`mkdir ${__dirname}/../public/audio/`)
 fs.readdirSync('./audio-source').forEach(x => {
     const [name, ex] = x.split(".")
     
-    if(ex == "wav") {
+    if(ex != "wav") 
+        return
 
-        config.ext.forEach((ext) => {
-            if(ext =="wav") {
-                execSync(`cp "${__dirname}/../audio-source/${name}.wav" "${__dirname}/../public/audio/${name}.wav"`)
-            }
+    config.ext.forEach((ext) => {
+        // if(ext =="wav") {
+        //     execSync(`cp "${__dirname}/../audio-source/${name}.wav" "${__dirname}/../public/audio/${name}.wav"`)
+        // }
+        // else {
+        const [bitrate, codec] = ext.split(".")
+        compress(name, codec, bitrate )
+        // }
+    })
+    
 
-            else {
-                const [bitrate, codec] = ext.split(".")
-            compress(name, codec, bitrate )
-            }
-        })
-        
-
-        config.files.push(name)
-    }
+    config.files.push(name)
+    
 
     
 })

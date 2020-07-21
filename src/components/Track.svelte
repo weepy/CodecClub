@@ -5,12 +5,27 @@
 	export let norate = false
 	export let extension
 	import AudioPlayer from './AudioPlayer.svelte'
+	import { fade} from 'svelte/transition'
+
+	let extensionStr = ""
+
+	$: {
+		if(extension) {
+			extensionStr = extension.replace(".","k ")
+
+			if(extension.match("flac"))
+				extensionStr = "source"
+		}
+	}
+
 </script>
 
 <div>
 
 <AudioPlayer src="audio/{filename}" ></AudioPlayer>
 <span>	 {title}	</span>
+
+
 
 {#if norate == false}
 	<select bind:value={score}>
@@ -22,9 +37,9 @@
 			<option value={5}>5 - Worst</option>
 	</select>	
 
-	
-	<!-- <span>{extension}</span> -->
-	
+	{#if extension}
+	<span class="answer" in:fade>{extensionStr}</span>
+	{/if}
 {/if}
 </div>
 
@@ -33,6 +48,7 @@
 div {
 	height: 50px;
 }
+.answer { background: black; color: white;padding:5px; margin-left: 5px;}
 	audio {
 		height: 30px;
     padding: 0;

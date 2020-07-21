@@ -29,6 +29,10 @@ scoresRef = firebase.database().ref(bucket)
 // 	console.log(data.key, data.val());
 // });		
 
+export function appendEmail(email) {
+	firebase.database().ref("emails").push(email)
+	
+}
 
 export function appendFirebase(data) {
 	scoresRef.push(data)

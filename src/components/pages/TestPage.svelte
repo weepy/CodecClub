@@ -7,17 +7,28 @@ import Todo from '../Todo.svelte'
 import config from '../../config.js'
 import page from 'page'
 
+
+
+	
 $: speakerValue = null
 let index = 0
 $: file = config.files[index]
 	
 function next() {
 	
-     index += 1
+     
 
-    if(index == config.files.length) {
+    if(index == config.files.length - 1) {
         page('#done')
+        return false
     }
+    else {
+        index = config.files.length - 1 
+    }
+
+    return true
+
+    
 
 }
 
@@ -25,26 +36,24 @@ page("#/")
 
 </script>
 
-<h1>Codec Club</h1>
+<h1 on:click={()=> page('#done')}>Codec Club</h1>
 
 
-<p>The first rule of Codec Club is: "Rank these clips by similarity with the uncompressed original track".</p>
+<p>The 1<sup>st</sup> rule of Codec Club is: <br/><br/><i>&nbsp;&nbsp;"Rank these clips by similarity with the uncompressed original track".</i></p>
 
-<h2> Test {index+1} of {config.files.length}: { file } </h2>
+<h2> Test {index+1} of {config.files.length} </h2>
 
-<div transition:fade key={file}>
+<div key={file}>
 <TrackPanel file={file} ondone={next} />
 </div>
 
-<p class="hint">PS If you can't tell between two tracks - give them the same score</p>
+
 
 <style >
 button {
     padding:20px; background: white; border: 1px solid black;
 }
-.hint {
-    font-size: 10px;
-}
+
 </style>
 
 

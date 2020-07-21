@@ -17,6 +17,15 @@ function next() {
 	localStorage.userType = userTypeValue
 }
 
+
+import { preloadAll } from '../../utils.js'
+
+
+
+// preloadAll(config.files, config.ext, (p) => {
+// 	console.log(p)
+// })
+
 </script>
 
 <h1>Codec Club</h1>
@@ -25,9 +34,13 @@ function next() {
 <p>This is a scientific test known as a blind listening test to try to determine the limits of compression on audio files. </p>
 <p>We want to find out if the you can hear the difference between different rates of high end audio codecs.</p>
 <p></p>
-<p>
+<hr/>
+
+
+
+<h5>
 	Before we start - what are you listening with?	
-</p>
+</h5>
 
 
 <select bind:value={speakerValue}>
@@ -44,8 +57,8 @@ function next() {
 	<option>Ear buds</option>
 </select>
 
-<p>
-And what is your relationship to music / audio?</p>
+<h5>
+And what is your relationship to music / audio?</h5>
 
 
 <select bind:value={userTypeValue}>

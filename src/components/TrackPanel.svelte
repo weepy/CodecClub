@@ -5,16 +5,27 @@
 	export let file
 	export let ondone
 
-	import { shuffle, findPositionMap } from '../utils.js'
+	import { preload, shuffle, findPositionMap } from '../utils.js'
+	import { fade} from 'svelte/transition'
 
+
+	let downloadProgress = 0
+	
+	$: preload(config.ext.map( ex => `/audio/${file}.${ex}`), (p) => {
+		downloadProgress = p
+	})
 	
 
-	let ext = shuffle([...config.ext.filter(x => x != "wav")])
+	$: console.log(file)
+
+	let ext = shuffle([...config.ext])
 	let error
 	let completed = false
 	
-	
 	let scores = ext.map(() => null)
+
+	$: ratedAll = scores.findIndex(s => s == null) == -1
+	
 
 	function done() {
 		console.log(scores)
@@ -41,22 +52,26 @@
 
 			}
 
-
 			 appendFirebase(data)
 			
 
-			
-
-			// completed = true
-			next()
+			completed = true
+			// next()
 		}
 
 	}
 
 	function next() {
-		ext = shuffle([...config.ext.filter(x => x != "wav")])
-		scores = ext.map(() => null)
-		ondone()
+
+		
+		
+		if(ondone()) {
+			completed = false
+			downloadProgress = 0
+
+			ext = shuffle([...config.ext])
+			scores = ext.map(() => null)
+		}
 	}
 	
 	
@@ -64,28 +79,46 @@
 
 <div>
 
-<Track title="Uncompressed original .wav" filename="{file}.wav" norate={true} />
-{#each ext as ex, i}
-<Track title="Compressed with codec {'ABCDEFG'[i]}" filename="{file}.{ex}" bind:score={scores[i]} extension={completed ? ex : ""} />
-{/each}	
-	<!-- {#if completed == false} -->
-	<button on:click={done}>
-		Next →
-	</button>
-	<!-- {:else}
-	<button on:click={next}>
-		Next >>
-	</button>
-	{/if} -->
+{#if downloadProgress < 1} 
 
-	{#if error}
-		<p class="error">
-			You missed one!
-	</p>
+<h3>Downloading audio ... {Math.floor(downloadProgress*100)}%</h3>
+
+{/if}
+
+<div class:hidden={downloadProgress<1}>
+	<Track title=" { file } : original audio" filename="{file}.wav.flac" norate={true} />
+	<hr />
+
+	{#each ext as ex, i}
+		<Track title="Compressed with codec {'ABCDEFG'[i]}" filename="{file}.{ex}" bind:score={scores[i]} extension={completed ? ex : ""} />
+	{/each}	
+	<hr/>
+	{#if completed == false && ratedAll}
+	<button on:click={done}>
+		Let's see how you did →
+	</button>
+	{:else if completed == true}
+		<button in:fade on:click={next} class="next">
+			Next →
+		</button>
+	{:else}
+	
+	<p class="hint">PS If you can't tell between two tracks - give them the same score</p>
 	{/if}
+</div>
+	
+
 </div>
 
 <style>
+
+.hidden {
+	visibility: hidden;
+}
+.next {
+	float: right;
+	margin-right: 100px;
+}
 	button {
 		    background: white;
     border: 1px solid black;
@@ -93,6 +126,20 @@
 
 		margin-top: 20px
 	}
+	hr { 
+		border:0px;
+		border-top: 1px solid rgba(0,0,0,0.1)
+		
+	}
 	.error {
 	color: red
-	}</style>
+	}
+	marquee{ width: 200px; background : hotpink; font-family: courier}
+	
+	.hint {
+    	font-size: 14px;
+		font-style:italic;
+	}
+
+	</style>
+

@@ -28,3 +28,51 @@ export function findPositionMap(_scores) {
     
     return ret
 }
+
+let loadedUrls = {}
+
+function preloadAudio(url) {
+    return new Promise(resolve => {
+        const a = new Audio
+
+        a.oncanplaythrough =() => {
+            resolve()
+        }
+        a.preload = true
+        a.src = url
+    })
+}
+
+export async function preload(urls, progressCallback=()=>{}) {
+
+    
+    return new Promise(async (resolve) => {
+        for(let i=0; i<urls.length;i++) {
+            progressCallback(i/urls.length)
+            const url = urls[i]
+            if(loadedUrls[url]) {
+                continue
+            }
+            const response = await fetch(url)
+            if (!response.ok) {
+                throw new Error("HTTP error, status = " + response.status)
+            }
+            loadedUrls[url]= true
+        }
+    
+    
+        progressCallback(1)
+        resolve(true)
+    })
+
+}
+
+
+export async function preloadAll(files, extensions, progressCallback) {
+	for(var i=0; i<files.length;i++) {
+		let file = files[i]
+        console.log(file)
+        await preload(extensions.map( ex => `/audio/${file}.${ex}`), progressCallback)
+        
+	}
+}
