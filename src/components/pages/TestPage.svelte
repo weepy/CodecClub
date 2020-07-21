@@ -23,7 +23,7 @@ function next() {
         return false
     }
     else {
-        index = config.files.length - 1 
+        index += 1
     }
 
     return true
