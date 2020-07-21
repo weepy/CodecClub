@@ -11,7 +11,7 @@
 	import { detect } from 'detect-browser'
 
 	const browser = detect()
-	
+
 	let downloadProgress = 0
 	
 	$: preload(config.ext.map( ex => `/audio/${file}.${ex}`), (p) => {
@@ -108,7 +108,7 @@
 		</button>
 	{:else}
 	
-	<p class="hint">PS If you can't tell between two tracks - give them the same score</p>
+	<p class="hint">Pro Tip: if you can't tell between two tracks - give them the same score</p>
 	{/if}
 </div>
 	

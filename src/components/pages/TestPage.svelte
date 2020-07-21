@@ -41,6 +41,8 @@ page("#/")
 
 <p>The 1<sup>st</sup> rule of Codec Club is: <br/><br/><i>&nbsp;&nbsp;"Rank these clips by similarity with the uncompressed original track".</i></p>
 
+<p>Press play on the original first, and then flip between versions as it's playing. It's like 'spot the difference' - but for sound</p>
+
 <h2> Test {index+1} of {config.files.length} </h2>
 
 <div key={file}>
