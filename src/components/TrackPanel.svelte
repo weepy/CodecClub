@@ -8,7 +8,10 @@
 	import { preload, shuffle, findPositionMap } from '../utils.js'
 	import { fade} from 'svelte/transition'
 
+	import { detect } from 'detect-browser'
 
+	const browser = detect()
+	
 	let downloadProgress = 0
 	
 	$: preload(config.ext.map( ex => `/audio/${file}.${ex}`), (p) => {
@@ -48,7 +51,9 @@
 				userId: localStorage.userId, 
 				sessionTime: parseInt(localStorage.sessionTime), 
 				speakers: localStorage.speaker,
-				userType: localStorage.userType
+				userType: localStorage.userType,
+				browser
+
 
 			}
 
