@@ -55,7 +55,7 @@ export async function preload(urls, progressCallback=()=>{}) {
             }
             const response = await fetch(url)
             if (!response.ok) {
-                throw new Error("HTTP error, status = " + response.status)
+                console.error("HTTP error, status = " + response.status)
             }
             loadedUrls[url]= true
         }

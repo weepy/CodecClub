@@ -31,8 +31,8 @@ import { preloadAll } from '../../utils.js'
 <h1>Codec Club</h1>
 
 <h2>Welcome to Codec Club.</h2>
-<p>This is a scientific test known as a blind listening test to try to determine the limits of compression on audio files. </p>
-<p>We want to find out if the you can hear the difference between different rates of high end audio codecs.</p>
+<p>This is a scientific test known as a "blind listening test" to try to determine the limits of compression on audio files. </p>
+<p>We want to find out if you can hear the difference between different rates of high end audio codecs.</p>
 <p></p>
 <hr/>
 

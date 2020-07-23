@@ -13,27 +13,34 @@
 	const browser = detect()
 
 	let downloadProgress = 0
+
+	let extensions =  config.ext
 	
-	$: preload(config.ext.map( ex => `/audio/${file}.${ex}`), (p) => {
+	
+
+	$: preload(extensions.map( ex => `/audio/${file}.${ex}`), (p) => {
 		downloadProgress = p
 	})
 	
 
 	$: console.log(file)
 
-	let ext = shuffle([...config.ext])
+	let ext = shuffle([...extensions])
 	let error
 	let completed = false
 	
 	let scores = ext.map(() => null)
 
-	$: ratedAll = scores.findIndex(s => s == null) == -1
+
+	
+	$: ratedAll = scores.filter(s => s == null).length == 0
 	
 
 	function done() {
 		console.log(scores)
-		error = scores.findIndex(s => s == null) >= 0
-		console.log(error)
+		// const x = file != "Full Mix" ? 0 : 2
+		// error = scores.filter(s => s == null).length >= x
+		// console.log(error)
 		// error  = false
 		if(!error) {
 
@@ -74,10 +81,11 @@
 			completed = false
 			downloadProgress = 0
 
-			ext = shuffle([...config.ext])
+			ext = shuffle([...extensions])
 			scores = ext.map(() => null)
 		}
 	}
+	
 	
 	
 </script>
@@ -108,7 +116,7 @@
 		</button>
 	{:else}
 	
-	<p class="hint">Pro Tip: if you can't tell between two tracks - give them the same score</p>
+	<p class="hint">Pro Tip: can't tell between two tracks? Give them the same score</p>
 	{/if}
 </div>
 	
