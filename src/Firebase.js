@@ -30,7 +30,7 @@ scoresRef = firebase.database().ref(bucket)
 // });		
 
 export function appendEmail(email) {
-	firebase.database().ref("emails2").push(email)
+	firebase.database().ref("emails2").push({email, userId: localStorage.userId})
 	
 }
 
