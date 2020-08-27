@@ -30,11 +30,11 @@
 {#if norate == false}
 	<select bind:value={score}>
 		<option value={null}>Rating</option>
-		<option value={1}>1 - Most similar</option>
-			<option value={2}>2</option>
-			<option value={3}>3</option>
-			<option value={4}>4</option>
-			<option value={5}>5 - Least similar</option>
+		<option value={1}>Original</option>
+		<option value={2}>Compressed</option>
+		<!-- <option value={3}>3</option>
+		<option value={4}>4</option>
+		<option value={5}>5 - Least similar</option> -->
 	</select>	
 
 	{#if extension}

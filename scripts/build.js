@@ -27,8 +27,8 @@ function compress(name, ext, bitrate) {
 
 const config = {
     files: [],
-    ext: ['wav.flac', '96.aac','128.aac','256.aac','64.aac']
-    // ext: ['wav', '16.aac','32.aac','64.aac','128.aac']
+    //ext: ['wav.flac', '96.aac','128.aac','256.aac','64.aac']
+    ext: ['wav.flac', '256.aac']
 }
 
 

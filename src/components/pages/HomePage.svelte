@@ -30,18 +30,20 @@ import { preloadAll } from '../../utils.js'
 
 <h1>Codec Club</h1>
 
-<h2>Welcome to Codec Club.</h2>
-<p>This is a scientific test known as a "blind listening test" to try to determine the limits of compression on audio files. </p>
-<p>We want to find out if you can hear the difference between different rates of high end audio codecs.</p>
+<h2>How good are your ears?</h2>
+<p>Can you hear the difference between 256AAC encoding and the original?</p>
+<p>This is a blind listening test to try to determine the limits of human hearing and audio compression. </p>
+<p>Good Luck!</p>
 <p></p>
 <hr/>
 
 
 
-<h5>
-	Before we start - what are you listening with?	
-</h5>
+<h4>
+	<i>Before we start make sure you're using high quality speakers or headphones. 	</i>
+</h4>
 
+<h5>What are you listening with?</h5>
 
 <select bind:value={speakerValue}>
 	<option>Pick</option>
@@ -58,7 +60,7 @@ import { preloadAll } from '../../utils.js'
 </select>
 
 <h5>
-And what is your relationship to music / audio?</h5>
+What is your relationship to music?</h5>
 
 
 <select bind:value={userTypeValue}>

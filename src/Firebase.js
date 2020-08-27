@@ -20,7 +20,7 @@ const database = firebase.database();
 let scoresRef  
 
 
-const bucket = document.location.hostname == "localhost" ? "scores-dev" : "scores-prod"
+const bucket = document.location.hostname == "localhost" ? "scores-dev" : "scores2-prod"
 
 scoresRef = firebase.database().ref(bucket)
 
@@ -30,7 +30,7 @@ scoresRef = firebase.database().ref(bucket)
 // });		
 
 export function appendEmail(email) {
-	firebase.database().ref("emails").push(email)
+	firebase.database().ref("emails2").push(email)
 	
 }
 

@@ -1,1 +1,1 @@
-export default {"files":["8 Minutes - Full Track","8 Minutes - Instrumental","8 Minutes - Vocals","I Want Em All To Know - Full Track","I Want Em All To Know - Vocals","Mixdown Test"],"ext":["wav.flac","96.aac","128.aac","256.aac","64.aac"]}
+export default {"files":["8 Minutes - Full Track","I Want Em All To Know - Full Track","I Want Em All To Know - Vocals","Mixdown Test"],"ext":["wav.flac","256.aac"]}

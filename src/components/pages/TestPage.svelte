@@ -16,8 +16,6 @@ $: file = config.files[index]
 	
 function next() {
 	
-     
-
     if(index == config.files.length - 1) {
         page('#done')
         return false
@@ -27,9 +25,6 @@ function next() {
     }
 
     return true
-
-    
-
 }
 
 page("#/")
@@ -39,9 +34,9 @@ page("#/")
 <h1 on:click={()=> page('#done')}>Codec Club</h1>
 
 
-<p>The 1<sup>st</sup> rule of Codec Club is: <br/><br/><i>&nbsp;&nbsp;"Rank these clips by similarity with the uncompressed original track".</i></p>
+<!-- <p>The 1<sup>st</sup> rule of Codec Club is: <br/><br/><i>&nbsp;&nbsp;"Rank these clips by similarity with the uncompressed original track".</i></p> -->
 
-<p>Press play on the original first, and then flip between versions as it's playing. It's like 'spot the difference' - but for sound</p>
+<p>Press play on the original first, and then flip between versions as it's playing. <br/>It's like 'spot the difference' - but for sound</p>
 
 <h2> Test {index+1} of {config.files.length} </h2>
 

@@ -13,8 +13,6 @@ function sub() {
 
 <h1>Yay Thanks!</h1>
 
-<p>Psssst - thanks for taking part in this experiment, the 2<sup>nd</sup> rule of Codec Club is: <br/><br/> &nbsp;&nbsp;&nbsp;<i>"Tell everyone you know about Codec Club!"</i></p>
-
 <p>If you’re interested in when we share the results of this survey, leave your email with us and we’ll make sure to keep you up to date.</p>
 
 {#if showemailform}
